@@ -3,15 +3,24 @@ def jogar():
     print("*********************************")
     print("***Bem vindo ao jogo da Forca!***")
     print("*********************************")
+    print("______")
+    print("|    |")
+    print("|     ")
+    print("|      ")
+    print("|      ")
 
-    frutas = ["pera", "banana", "melancia", "laranja", "abacaxi"]
-    fruta_secreta = frutas[random.randint(0, 3)]
+    arquivo = open("./palavras.txt")
+    frutas = []
+    chutes = []
+    for linha in arquivo:
+        linha=linha.strip()
+        frutas.append(linha)
+    fruta_secreta = frutas[random.randint(0, (len(frutas)-1))]
     fruta_espelho = []
+    print(fruta_secreta)
 
     for letter in fruta_secreta:
         fruta_espelho.append("_")
-        
-    enforcou = False
     acertou = False
     vidas = 6
     while(vidas>0 and acertou == False):
@@ -24,49 +33,44 @@ def jogar():
         if(not atualizou): vidas-=1
                   
         resultado = ''.join(fruta_espelho)
-        print("______")
-        print("|    |")
-        print("|     ")
-        print("|      ")
-        print("|      ")
-        if(vidas<=5): 
+        
+        if(vidas==5): 
             print("______")
             print("|    |")
             print("|    O")
             print("|      ")
             print("|      ")
-
-        if(vidas<=4): 
+        elif(vidas==4): 
             print("______")
             print("|    |")
             print("|    O")
             print("|    | ")
             print("|      ")
-        if(vidas<=3): 
+        elif(vidas==3): 
             print("______")
             print("|    |")
             print("|    O")
             print("|    |\\")
             print("|      ")
-        if(vidas<=2): 
+        elif(vidas==2): 
             print("______")
             print("|    |")
             print("|    O")
             print("|   /|\\")
             print("|      ")
-        if(vidas<=1): 
+        elif(vidas==1): 
             print("______")
             print("|    |")
             print("|    O")
             print("|   /|\\")
             print("|     \\")
-        if(vidas<=0): 
+        elif(vidas==0): 
             print("______")
             print("|    |")
             print("|    O")
             print("|   /|\\")
             print("|   / \\")
-        print(resultado)  # Saída: _a_a_a 
+        print(resultado)
         if(resultado == fruta_secreta): 
             acertou = True
             print("Parabéns, você acertou!")
