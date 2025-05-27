@@ -57,6 +57,7 @@ def desenhaBoneco(vidas, resultado):
         print("|    O")
         print("|   /|\\")
         print("|   / \\")
+    print(resultado)
 def loopGame(fruta_secreta):
     fruta_espelho = []
     for letter in fruta_secreta:
@@ -74,12 +75,15 @@ def loopGame(fruta_secreta):
                   
         resultado = ''.join(fruta_espelho)
         desenhaBoneco(vidas, resultado)
-        verificaAcerto(resultado, fruta_secreta)
+        if(verificaAcerto(resultado, fruta_secreta, acertou)):
+            acertou = True
         
-def verificaAcerto(resultado, fruta_secreta):
+def verificaAcerto(resultado, fruta_secreta, acertou):
     if(resultado == fruta_secreta): 
-                acertou = True
-                print("Parabéns, você acertou!")
+        print("Parabéns, você acertou!")
+        acertou = True
+        return acertou
+    
 
 if(__name__ == "__main__"):
     jogar()
